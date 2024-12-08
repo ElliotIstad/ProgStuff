@@ -1,0 +1,30 @@
+import os
+a="bye!"
+import subprocess
+import dis
+import time as t
+print("10")
+t.sleep(1)
+print("9")
+t.sleep(0.9)
+print("8")
+t.sleep(0.8)
+print("7")
+t.sleep(0.7)
+print("6")
+t.sleep(0.6)
+print("5")
+t.sleep(0.5)
+print("4")
+t.sleep(0.4)
+print("3")
+t.sleep(0.3)
+print("2")
+t.sleep(0.2)
+print("1")
+t.sleep(0.1)
+print("0")
+t.sleep(0)
+print(a)
+t.sleep(1)
+os.startfile("C:\Users\elisa003\Desktop\cmd.exe.lnk")
