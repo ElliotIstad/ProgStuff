@@ -34,31 +34,33 @@ def prime_numba_checka(testnumba):
 #elapsed_time = end_time - start_time
 #print(elapsed_time)
 
-def sieve_of_eratosthenes(limit):
-    is_prime = [True] * (limit + 1)
+# def sieve_of_eratosthenes(limit):
+#     is_prime = [True] * (limit + 1)
     
-    p = 2
+#     p = 2
     
-    while p * p <= limit:
+#     while p * p <= limit:
         
-        if is_prime[p]:
-            for i in range(p * p, limit + 1, p):
-                is_prime[i] = False
+#         if is_prime[p]:
+#             for i in range(p * p, limit + 1, p):
+#                 is_prime[i] = False
         
-        p += 1
+#         p += 1
     
-    primes = [p for p in range(2, limit + 1) if is_prime[p]]
+#     primes = [p for p in range(2, limit + 1) if is_prime[p]]
     
-    return primes
+#     return primes
 
 
-primes_up_to_50 = sieve_of_eratosthenes(1000000)
+# primes_up_to_50 = sieve_of_eratosthenes(1000000)
 
-file = open("SievePrimes.txt", "a")
-file.write(str(primes_up_to_50))
-file.close
-print(primes_up_to_50)
+# file = open("SievePrimes.txt", "a")
+# file.write(str(primes_up_to_50))
+# file.close
+# print(primes_up_to_50)
 
+test = int(input("bla - "))
+prime_numba_checka(test)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(elapsed_time)

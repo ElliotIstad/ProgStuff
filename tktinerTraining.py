@@ -3,7 +3,6 @@
 #Det kommer mer etter hvert, men jeg har kommentert på det som er ferdig, og det som er implementert
 #Koden er ikke den mest optimiserte tingen i verden, og jeg kommer til å gjøre den "bedre" etter hvert
 
-
 import tkinter as tk, webbrowser as wb, subprocess, ctypes, sympy as sy, random, time
 #importerer ulike moduler som jeg kommer til å bruke litt rundt omkring i koden
 
@@ -58,14 +57,23 @@ def on_button_pressed3():
     TinyButton.pack()
 
 def restartConfirmation():
+    def funkyfunc():
+        if AYS.cget("bg") == "white":
+            AYS.config(bg="red")
+        else:
+            AYS.config(bg="white")
+        AYS.after(300, funkyfunc)
     confirmationWin = tk.Toplevel()
     AYS = tk.Button(
-        width=5,
-        height=2,
+        master=confirmationWin,
+        width=20,
+        height=4,
+        bg="white",
         text='are you sure?',
         command=on_button_pressed2
     )
     AYS.pack()
+    funkyfunc()
     #denne kommandoen her er egentlig en warning visst du restarter, men den er ikke i bruk ATM
 
 def on_button_pressed4():
@@ -249,12 +257,15 @@ def on_button_pressed5():
 
 def on_button_pressed6():
     #denne her er fortsatt work in progress så det er ikke kommentarer her.
-    crossimage = tk.PhotoImage(file=r"C:\Users\elisa003\Downloads\cross.png")
-    circleimage = tk.PhotoImage(file=r"C:\Users\elisa003\Downloads\circle.png")
-    emptyimage = tk.PhotoImage(file=r"C:\Users\elisa003\Downloads\border.png")
+    global crossimage, circleimage, emptyimage
+    crossimage = tk.PhotoImage(file=r"cross_image1.png")
+    circleimage = tk.PhotoImage(file=r"hollow_ring_image.png")
+    emptyimage = tk.PhotoImage(file=r"plain_white_image.png")
     pictureList = [crossimage, circleimage]
     tttSLOTS = {}
-    tttWin = tk.Toplevel(width=600, height = 600)
+    tttWin = tk.Toplevel()
+    tttWin.geometry("200x100")
+
     def endre_bilde(x, y):
         activeimage = y
         tttSLOTS[f"slot{x}"].config(image=y)
@@ -285,7 +296,7 @@ button2 = tk.Button(
     height=4,
     bg='red',
     fg='white',
-    command=on_button_pressed2,
+    command=restartConfirmation,
 )
 button3 = tk.Button(
     text='Wallpaper Picker',
@@ -314,7 +325,7 @@ button6 = tk.Button(
     text='tick tack toe',
     width=32,
     height=4,
-    fg='lime',
+    fg='turquoise',
     bg='white',
     command=on_button_pressed6
 )

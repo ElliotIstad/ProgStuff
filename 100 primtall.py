@@ -28,3 +28,5 @@ while count < 100:
         count = count+1
     elif not sympy.isprime(tall):
         tall = tall+1
+
+print("very cool :)")
