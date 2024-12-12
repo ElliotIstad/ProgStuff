@@ -1,21 +1,21 @@
 import tkinter as tk
 import math
 import time
- 
+
 root = tk.Tk()
 canvas = tk.Canvas(root, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
 root.attributes("-fullscreen", True)
 canvas.configure(background='#202020')
 canvas.pack()
- 
+
 def draw_dot(x,y,radius):
     x2,y2=x+radius,y+radius
     canvas.create_oval(x,y,x2,y2,fill='red')
- 
+
 def draw_line(x1,y1,x2,y2,width):
     canvas.create_line(x1,y1,x2,y2,width=width)
- 
- 
+
+
 angle = 30
 speed = -30
 radius = 10
@@ -23,14 +23,14 @@ lineW = 4
 sizeX = root.winfo_screenheight()/4
 sizeY = root.winfo_screenheight()/3.5
 sizeZ = 50
- 
+
 o1 = (root.winfo_screenwidth()/2)
 o2 = (root.winfo_screenheight()/2.5)
 offset=[o1,o2]
- 
+
 def draw():
     vertices = []
- 
+
     for i in range(1,5):
         pX = (math.cos(math.radians(angle+((i*2+1)*45)))*sizeX)+offset[0]
         pY = (math.sin(math.radians(angle+((i*2+1)*45)))*sizeZ)+offset[1]
