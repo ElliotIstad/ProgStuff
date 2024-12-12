@@ -270,8 +270,24 @@ def on_button_pressed6():
         activeimage = y
         tttSLOTS[f"slot{x}"].config(image=y)
     
+    def win_checker():
+        winningstreaks = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ]
+
+        if tttSLOTS[winningstreaks[0][0]].cget("image") and tttSLOTS[winningstreaks[0][1]].cget("image") and tttSLOTS[winningstreaks[0][2]].cget("image") == crossimage:
+            
+        
     def on_ttt_icon_pressed(x):
         global totalTurns
+        win_checker()
         endre_bilde(x, pictureList[totalTurns%2])
         totalTurns+=1
 
