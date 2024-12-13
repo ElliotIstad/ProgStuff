@@ -20,7 +20,7 @@ totalTurns = 0
 #dette her er kommandoene som vil bli kjørt når du trykker på visse knapper i hovedvinduet
 def on_button_pressed1():
     #denne knappen bruker website modulen til å åpne ulike programmer på pc-en min som jeg bruker ofte
-    #veldig artig å ha etter en shutdown
+    #veldig artig å ha etter en shutdown siden jeg ikke bruker startupp apps
     wb.open(r"C:\Users\elisa003\AppData\Local\Programs\Microsoft VS Code\Code.exe")
     wb.open(r"C:\Users\elisa003\AppData\Local\Discord\app-1.0.9161\Discord.exe")
     wb.open(r"C:\Users\elisa003\AppData\Local\Programs\Opera\opera.exe")
@@ -62,7 +62,7 @@ def restartConfirmation():
             AYS.config(bg="red")
         else:
             AYS.config(bg="white")
-        AYS.after(300, funkyfunc)
+        AYS.after(200, funkyfunc)
     confirmationWin = tk.Toplevel()
     AYS = tk.Button(
         master=confirmationWin,
@@ -74,7 +74,7 @@ def restartConfirmation():
     )
     AYS.pack()
     funkyfunc()
-    #denne kommandoen her er egentlig en warning visst du restarter, men den er ikke i bruk ATM
+    #warning greie med flashing lights
 
 def on_button_pressed4():
     #denne følgene kommandoen er ganske stor. Det er en kalkulator
