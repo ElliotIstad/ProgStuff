@@ -255,7 +255,7 @@ def on_button_pressed5():
     RockButton.grid(row=2, column=0, padx=10, pady=10)
     ScissorsButton = tk.Button(master=rpsWin, height=3, width=10, text=choices[2], command=on_scissors_button_pressed)
     ScissorsButton.grid(row=2, column=2, padx=10, pady=10)
-
+    
 def on_button_pressed6():
     #denne her er fortsatt work in progress så det er ikke kommentarer her.
     global crossimage, circleimage, emptyimage
