@@ -17,6 +17,9 @@ outcome = 0
 score = 0
 totalTurns = 0
 whowon = ''
+winningLabel = tk.Button()
+def emptycommand():
+    exit()
 
 #dette her er kommandoene som vil bli kjørt når du trykker på visse knapper i hovedvinduet
 def on_button_pressed1():
@@ -283,28 +286,45 @@ def on_button_pressed6():
             [2, 4, 6],
         ]
 
-        for x in range(1-9):
-            global whowon
-            if (tttSLOTS[f"slot{winningstreaks[x-1][0]}"] and tttSLOTS[f"slot{winningstreaks[x-1][0]}"] and tttSLOTS[f"slot{winningstreaks[x-1][0]}"]) == crossimage:
+        global whowon
+        whowon = None
+        for x in range(8):
+            if (tttSLOTS[f"slot{winningstreaks[x][0]+1}"].cget('image') == str(crossimage) and
+                tttSLOTS[f"slot{winningstreaks[x][1]+1}"].cget('image') == str(crossimage) and
+                tttSLOTS[f"slot{winningstreaks[x][2]+1}"].cget('image') == str(crossimage)):
                 whowon = "cross"
-            elif (tttSLOTS[f"slot{winningstreaks[x-1][0]}"] and tttSLOTS[f"slot{winningstreaks[x-1][0]}"] and tttSLOTS[f"slot{winningstreaks[x-1][0]}"]) == circleimage:
+                for x in range(9):
+                    tttSLOTS[f"slot{x+1}"].config(command=None)
+            elif (tttSLOTS[f"slot{winningstreaks[x][0]+1}"].cget('image') == str(circleimage) and
+                tttSLOTS[f"slot{winningstreaks[x][1]+1}"].cget('image') == str(circleimage) and
+                tttSLOTS[f"slot{winningstreaks[x][2]+1}"].cget('image') == str(circleimage)):
                 whowon = "circle"
+                for x in range(9):
+                    tttSLOTS[f"slot{x+1}"].config(command=None)
         
-        if whowon == "cross" or "circle":
-            WinningLabel = tk.Label(text=whowon, master=tttWin)
-            WinningLabel.grid(row=1, column=4)
+        if whowon == "cross" or whowon == "circle":
+            winningLabel = tk.Label(text=f"{whowon} wins!", master=tttWin)
+            winningLabel.grid(row=1, column=4)
     
     def on_ttt_icon_pressed(x):
-        win_checker()
         global totalTurns
-        endre_bilde(x, pictureList[totalTurns%2])
-        totalTurns+=1
+        endre_bilde(x, pictureList[totalTurns % 2])
+        win_checker()
+        totalTurns += 1
 
     for i in range(9):
         row = i // 3  
         col = i % 3
         tttSLOTS[f"slot{i+1}"] = tk.Button(master=tttWin, image=emptyimage, command=lambda i=i:on_ttt_icon_pressed(i+1))
         tttSLOTS[f"slot{i+1}"].grid(row=row, column=col)
+    def resetIcons():
+        for x in range(9):
+            tttSLOTS[f"slot{x+1}"].config(image=emptyimage, command=lambda i=i:on_ttt_icon_pressed(i+1))
+        winningLabel.config(text="")
+        global totalTurns
+        totalTurns = 0
+    resetButton = tk.Button(master=tttWin, text="reset", command=resetIcons)
+    resetButton.grid(row=2, column=4)
 
 #dette her er sentral-vinduet hvor alle knappene til de ulike tingene i programmet ligger. RPS, calc, WP osv
 button1 = tk.Button(
