@@ -269,6 +269,8 @@ def on_button_pressed6():
     tttSLOTS = {}
     tttWin = tk.Toplevel()
     tttWin.geometry("200x100")
+    winningLabel = tk.Label(master=tttWin, text="")
+    winningLabel.grid(row=1, column=4)
 
     def endre_bilde(x, y):
         activeimage = y
@@ -287,7 +289,7 @@ def on_button_pressed6():
         ]
 
         global whowon
-        whowon = None
+        whowon = ''
         for x in range(8):
             if (tttSLOTS[f"slot{winningstreaks[x][0]+1}"].cget('image') == str(crossimage) and
                 tttSLOTS[f"slot{winningstreaks[x][1]+1}"].cget('image') == str(crossimage) and
@@ -317,12 +319,15 @@ def on_button_pressed6():
         col = i % 3
         tttSLOTS[f"slot{i+1}"] = tk.Button(master=tttWin, image=emptyimage, command=lambda i=i:on_ttt_icon_pressed(i+1))
         tttSLOTS[f"slot{i+1}"].grid(row=row, column=col)
+    
     def resetIcons():
+        global whowon
         for x in range(9):
-            tttSLOTS[f"slot{x+1}"].config(image=emptyimage, command=lambda i=i:on_ttt_icon_pressed(i+1))
-        winningLabel.config(text="")
+            tttSLOTS[f"slot{x+1}"].config(image=emptyimage)
         global totalTurns
         totalTurns = 0
+        whowon = ''
+        winningLabel.destroy()
     resetButton = tk.Button(master=tttWin, text="reset", command=resetIcons)
     resetButton.grid(row=2, column=4)
 
